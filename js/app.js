@@ -1,15 +1,27 @@
 /*
  * Create a list that holds all of your cards
  */
-
-
+// cards array holds all cards
+let card = document.getElementsByClassName("card");
+let cards = [...card];
+// loop to add event listeners to each card
+for (var i = 0; i < cards.length; i++) {
+	cards[i].addEventListener("click", displayCard);
+};
+//displayCard is a function we'll talk about this soon
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
+// toggles open and show class to display cards
+var displayCard = function () {
+	this.classList.toggle("open");
+	this.classList.toggle("show");
+	this.classList.toggle("disabled");
+};
+// Fisher-Yates (aka Knuth) Shuffle
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -23,8 +35,19 @@ function shuffle(array) {
     }
 
     return array;
-}
-
+};
+// deck of all cards in game
+const deck = document.querySelector(".deck");
+function startGame() {
+	var shuffleCards = shuffle(cards);
+	for (let i = 0; i < shuffleCards.length; i++) {
+		[].forEach.call(shuffleCards, function(item) {
+			deck.appendChild(item);
+		});
+	}
+};
+//shuffles cards when page is refreshed / loads
+document.body.onload = startGame();
 
 /*
  * set up the event listener for a card. If a card is clicked:
