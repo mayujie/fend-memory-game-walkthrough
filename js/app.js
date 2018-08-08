@@ -6,6 +6,7 @@ const deck = document.querySelector('.deck');
 //add the card to a list of open cards Storing Cards in an Array
 let toggledCards = [];
 // classList get the class of the event target
+// set event listener to deck and its child
 deck.addEventListener('click', event => {
 	const clickTarget = event.target;
 	if (isClickValid(clickTarget
@@ -80,6 +81,16 @@ function shuffle(array) {
     return array;
 };
 
+//function handle shuffling the deck
+function shuffleDeck() {
+	const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
+	console.log('Cards to shuffle', cardsToShuffle);
+	const shuffledCards = shuffle(cardsToShuffle);
+	console.log('Shuffked cards', shuffledCards);
+	//const cd = [...cardsToShuffle];
+	//console.log(cd);
+}
+shuffleDeck();
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
