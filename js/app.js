@@ -8,10 +8,13 @@ let toggledCards = [];
 // classList get the class of the event target
 deck.addEventListener('click', event => {
 	const clickTarget = event.target;
-	if (clickTarget.classList.contains('card')) {
-		console.log("Im a card");
+	if (clickTarget.classList.contains('card') && toggledCards.length < 2) {
+		// console.log("Im a card");
 		toggleCard(clickTarget);
 		addToggleCard(clickTarget);
+		if (toggledCards.length ===2) {
+			console.log('2 cards!');
+		}
 	}
 });
 //toggling into own function
