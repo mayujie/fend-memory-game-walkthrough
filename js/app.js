@@ -8,13 +8,17 @@ let toggledCards = [];
 // classList get the class of the event target
 deck.addEventListener('click', event => {
 	const clickTarget = event.target;
-	if (clickTarget.classList.contains('card') && toggledCards.length < 2) {
+	if (clickTarget.classList.contains('card') && 
+		!clickTarget.classList.contains('match') &&
+		toggledCards.length < 2 && 
+		!toggledCards.includes(clickTarget)
+		) {
 		// console.log("Im a card");
 		toggleCard(clickTarget);
 		addToggleCard(clickTarget);
 		if (toggledCards.length ===2) {
 			console.log('2 cards!');
-			checkForMatch();
+			checkForMatch(clickTarget);
 		}
 	}
 });
@@ -39,10 +43,12 @@ function checkForMatch() {
 		toggledCards[1].classList.toggle('match');
 		toggledCards = [];
 	} else {
-		console.log("Not a match!");
-		toggledCards = [];
-		toggleCard(toggledCards[0]);
-		toggleCard(toggledCards[1]);
+		setTimeout(() => {
+			console.log("Not a match!");		
+			toggleCard(toggledCards[0]);
+			toggleCard(toggledCards[1]);
+			toggledCards = [];
+		}, 1000);
 	}
 }
 /*
