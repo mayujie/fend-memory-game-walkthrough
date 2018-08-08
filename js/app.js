@@ -8,11 +8,8 @@ let toggledCards = [];
 // classList get the class of the event target
 deck.addEventListener('click', event => {
 	const clickTarget = event.target;
-	if (clickTarget.classList.contains('card') && 
-		!clickTarget.classList.contains('match') &&
-		toggledCards.length < 2 && 
-		!toggledCards.includes(clickTarget)
-		) {
+	if (isClickValid(clickTarget
+	)) {
 		// console.log("Im a card");
 		toggleCard(clickTarget);
 		addToggleCard(clickTarget);
@@ -22,6 +19,15 @@ deck.addEventListener('click', event => {
 		}
 	}
 });
+//check card state before run event listener
+function isClickValid(clickTarget) {
+	return (
+		clickTarget.classList.contains('card') && 
+		!clickTarget.classList.contains('match') &&
+		toggledCards.length < 2 && 
+		!toggledCards.includes(clickTarget)
+	);
+}
 //toggling into own function
 function toggleCard(card) {
 	//.toggle to turn on or off the classes when our click event fires
