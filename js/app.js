@@ -89,6 +89,9 @@ function shuffleDeck() {
 	console.log('Shuffked cards', shuffledCards);
 	//const cd = [...cardsToShuffle];
 	//console.log(cd);
+	for (card of shuffledCards) {
+		deck.appendChild(card);
+	}
 }
 shuffleDeck();
 /*
