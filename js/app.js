@@ -19,10 +19,10 @@ deck.addEventListener('click', event => {
 	}
 });
 //toggling into own function
-function toggleCard(clickTarget) {
+function toggleCard(card) {
 	//.toggle to turn on or off the classes when our click event fires
-	clickTarget.classList.toggle('open');
-	clickTarget.classList.toggle('show');
+	card.classList.toggle('open');
+	card.classList.toggle('show');
 };
 //push the clickTarget into the toggledCards array
 function addToggleCard(clickTarget) {
@@ -41,6 +41,8 @@ function checkForMatch() {
 	} else {
 		console.log("Not a match!");
 		toggledCards = [];
+		toggleCard(toggledCards[0]);
+		toggleCard(toggledCards[1]);
 	}
 }
 /*
