@@ -20,6 +20,7 @@ deck.addEventListener('click', event => {
 			console.log('2 cards!');
 			checkForMatch(clickTarget);
 			addMove();
+			checkScore();
 		}
 	}
 });
@@ -115,8 +116,9 @@ function addMove() {
 }
 // check stars and remove
 function checkScore() {
-	if (moves ===16 || moves ===24) {
-		removeStar();
+	if (moves ===12 || moves ===20) {
+		// removeStar();
+		hideStar();
 	}
 }
 // function handles removing a star from dom
@@ -129,5 +131,5 @@ function hideStar() {
 		}
 	}
 }
-hideStar();// two stars
-hideStar();// one star
+// hideStar();// two stars
+// hideStar();// one star
