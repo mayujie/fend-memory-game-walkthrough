@@ -5,6 +5,8 @@
 const deck = document.querySelector('.deck');
 //add the card to a list of open cards Storing Cards in an Array
 let toggledCards = [];
+// initialize moves
+let moves = 0;
 // classList get the class of the event target
 // set event listener to deck and its child
 deck.addEventListener('click', event => {
@@ -17,6 +19,7 @@ deck.addEventListener('click', event => {
 		if (toggledCards.length ===2) {
 			console.log('2 cards!');
 			checkForMatch(clickTarget);
+			addMove();
 		}
 	}
 });
@@ -104,3 +107,9 @@ shuffleDeck();
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+// change moves in html
+function addMove() {
+	moves++;
+	const movesText = document.querySelector('.moves');
+	movesText.innerHTML = moves;
+}
