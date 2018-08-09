@@ -199,6 +199,16 @@ function getStars() {
 	console.log(starCount); // 2
 	return starCount;
 }
+// add function to modal button cancel
+document.querySelector('.modal_cancel').addEventListener('click', () => {
+	toggleModal();
+});
+// add function to modal button replay
+document.querySelector('.modal_replay').addEventListener('click', () => {
+	console.log('replay');
+	//TODO: call reset game HERE
+});
+
 
 // Modal tests
 time = 121;
