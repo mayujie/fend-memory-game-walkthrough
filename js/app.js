@@ -172,5 +172,40 @@ function toggleModal() {
 	const modal = document.querySelector('.modal_background');
 	modal.classList.toggle('hide');
 }
-toggleModal() // open modal
-toggleModal() // close modal
+// toggleModal() // open modal
+// toggleModal() // close modal
+
+// function to change stats in modal
+function writeModalStats() {
+	const timeStat = document.querySelector('.modal_time');
+	const clockTime = document.querySelector('.clock').innerHTML;
+	const movesStat = document.querySelector('.modal_moves');
+	const starsStat = document.querySelector('.modal_stars');
+	const stars = getStars();
+	// console.log(clockTime);
+	timeStat.innerHTML = `Time = ${clockTime}`;
+	movesStat.innerHTML = `Moves = ${moves}`;
+	starsStat.innerHTML = `Stars = ${stars}`;
+}
+// get current number of stars
+function getStars() {
+	stars = document.querySelectorAll('.stars li');
+	starCount = 0;
+	for (star of stars) {
+		if (star.style.display !== 'none') {
+			starCount++;
+		}
+	}
+	console.log(starCount); // 2
+	return starCount;
+}
+
+// Modal tests
+time = 121;
+displayTime();// 2:01
+moves = 12;
+checkScore();// 2 stars
+
+writeModalStats(); // write stats to modal
+toggleModal();// open modal
+
