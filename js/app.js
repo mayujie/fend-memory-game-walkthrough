@@ -123,7 +123,11 @@ function checkScore() {
 function hideStar() {
 	const starList = document.querySelectorAll('.stars li');
 	for (star of starList) {
-		star.style.display = 'none';
+		if (star.style.display !== 'none') {
+			star.style.display = 'none';
+			break;
+		}
 	}
 }
-hideStar();
+hideStar();// two stars
+hideStar();// one star
