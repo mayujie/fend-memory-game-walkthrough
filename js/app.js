@@ -133,3 +133,9 @@ function hideStar() {
 }
 // hideStar();// two stars
 // hideStar();// one star
+function startClock() {
+	let clockId = setTimeout(() => {
+		console.log('1 second has passed');
+	}, 1000);
+}
+startClock();
