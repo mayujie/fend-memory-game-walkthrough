@@ -113,3 +113,17 @@ function addMove() {
 	const movesText = document.querySelector('.moves');
 	movesText.innerHTML = moves;
 }
+// check stars and remove
+function checkScore() {
+	if (moves ===16 || moves ===24) {
+		removeStar();
+	}
+}
+// function handles removing a star from dom
+function hideStar() {
+	const starList = document.querySelectorAll('.stars li');
+	for (star of starList) {
+		star.style.display = 'none';
+	}
+}
+hideStar();
