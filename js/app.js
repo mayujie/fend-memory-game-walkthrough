@@ -11,6 +11,8 @@ let moves = 0;
 let clockOff = true;
 // initial value of time
 let time = 0;
+// as global variable
+let clockId;
 // classList get the class of the event target
 // set event listener to deck and its child
 deck.addEventListener('click', event => {
@@ -141,11 +143,11 @@ function hideStar() {
 // hideStar();// two stars
 // hideStar();// one star
 function startClock() {
-	let clockId = setInterval(() => {
+	clockId = setInterval(() => {
 		time++;
 		// console.log('1 second has passed');
-		console.log(time);
 		displayTime();
+		console.log(time);
 	}, 1000);
 }
 // startClock();
@@ -160,4 +162,8 @@ function displayTime() {
 	} else {
 		clock.innerHTML = `${minutes}:${seconds}`;
 	}
+}
+// function stop the clock using clearInterval()
+function stopClock() {
+	clearInterval(clockId);
 }
