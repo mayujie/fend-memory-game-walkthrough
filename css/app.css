@@ -120,6 +120,10 @@ styles for Modal
     background: rgba(0, 0, 0, 0.438);
 }
 
+.hide {
+    display: none;
+}
+
 .modal_body {
     position: relative;
     width: 400px;

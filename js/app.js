@@ -167,3 +167,10 @@ function displayTime() {
 function stopClock() {
 	clearInterval(clockId);
 }
+// function to toggle the hide class
+function toggleModal() {
+	const modal = document.querySelector('.modal_background');
+	modal.classList.toggle('hide');
+}
+toggleModal() // open modal
+toggleModal() // close modal
