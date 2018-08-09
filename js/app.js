@@ -13,6 +13,10 @@ let clockOff = true;
 let time = 0;
 // as global variable
 let clockId;
+// global variable counter tracks the matched pairs
+let matched = 0;
+//the game winning number of matches and in our case that would be 16 cards / 2 = 8 pairs.
+const TOTAL_PAIRS = 8;
 // classList get the class of the event target
 // set event listener to deck and its child
 deck.addEventListener('click', event => {
@@ -62,6 +66,11 @@ function checkForMatch() {
 		toggledCards[0].classList.toggle('match');
 		toggledCards[1].classList.toggle('match');
 		toggledCards = [];
+		matched++;//check the value after we increment against
+		console.log(matched);
+		if (matched === TOTAL_PAIRS) {
+			gameOver();
+		}
 	} else {
 		setTimeout(() => {
 			console.log("Not a match!");		
@@ -147,7 +156,7 @@ function startClock() {
 		time++;
 		// console.log('1 second has passed');
 		displayTime();
-		console.log(time);
+		// console.log(time);
 	}, 1000);
 }
 // startClock();
@@ -156,7 +165,7 @@ function displayTime() {
 	const minutes = Math.floor(time / 60);
 	const seconds = time % 60;
 	const clock = document.querySelector('.clock');
-	console.log(clock);
+	// console.log(clock);
 	if (seconds < 10) {
 		clock.innerHTML = `${minutes}:0${seconds}`;
 	} else {
@@ -239,12 +248,19 @@ function resetStars() {
 document.querySelector('.restart').addEventListener('click', resetGame);
 // tie resetGame function to replay button in modal
 document.querySelector('.modal_replay').addEventListener('click', resetGame);
-// Modal tests
+
+/*// Modal tests
 time = 121;
 displayTime();// 2:01
 moves = 12;
 checkScore();// 2 stars
 
 writeModalStats(); // write stats to modal
-toggleModal();// open modal
+toggleModal();// open modal*/
 
+//The gameOver function will stop the clock, write to modal, and toggle that modal
+function gameOver() {
+	stopClock();
+	writeModalStats();
+	toggleModal();
+}
