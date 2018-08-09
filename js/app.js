@@ -7,12 +7,19 @@ const deck = document.querySelector('.deck');
 let toggledCards = [];
 // initialize moves
 let moves = 0;
+// holds the state of clock whether its on or off
+let clockOff = true;
+// initial value of time
+let time = 0;
 // classList get the class of the event target
 // set event listener to deck and its child
 deck.addEventListener('click', event => {
 	const clickTarget = event.target;
-	if (isClickValid(clickTarget
-	)) {
+	if (isClickValid(clickTarget)) {
+		if (clockOff) {
+			startClock();
+			clockOff = false;
+		}
 		// console.log("Im a card");
 		toggleCard(clickTarget);
 		addToggleCard(clickTarget);
@@ -134,11 +141,23 @@ function hideStar() {
 // hideStar();// two stars
 // hideStar();// one star
 function startClock() {
-	time = 0;
 	let clockId = setInterval(() => {
 		time++;
 		// console.log('1 second has passed');
 		console.log(time);
+		displayTime();
 	}, 1000);
 }
-startClock();
+// startClock();
+// every new second of interval function need to display the current time in score HTML
+function displayTime() {
+	const minutes = Math.floor(time / 60);
+	const seconds = time % 60;
+	const clock = document.querySelector('.clock');
+	console.log(clock);
+	if (seconds < 10) {
+		clock.innerHTML = `${minutes}:0${seconds}`;
+	} else {
+		clock.innerHTML = `${minutes}:${seconds}`;
+	}
+}
