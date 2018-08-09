@@ -208,8 +208,37 @@ document.querySelector('.modal_replay').addEventListener('click', () => {
 	console.log('replay');
 	//TODO: call reset game HERE
 });
-
-
+// function to resets the game
+function resetGame() {
+	resetClockAndTime();
+	resetMoves();
+	resetStars();
+	shuffleDeck();
+}
+// reset stuff
+function resetClockAndTime() {
+	stopClock();
+	clockOff = true;
+	time = 0;
+	displayTime();
+}
+// function to reset moves
+function resetMoves() {
+	moves = 0;
+	document.querySelector('.moves').innerHTML = moves;
+}
+// function to reset stars
+function resetStars() {
+	stars = 0;
+	const starList = document.querySelectorAll('.stars li');
+	for (star of starList) {
+		star.style.display = 'inline';
+	}
+}
+// tie resetGame function to restart button in panel
+document.querySelector('.restart').addEventListener('click', resetGame);
+// tie resetGame function to replay button in modal
+document.querySelector('.modal_replay').addEventListener('click', resetGame);
 // Modal tests
 time = 121;
 displayTime();// 2:01
