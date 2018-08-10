@@ -1,6 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
+// Globals
 // select the parent element deck
 const deck = document.querySelector('.deck');
 //add the card to a list of open cards Storing Cards in an Array
@@ -15,8 +16,6 @@ let time = 0;
 let clockId;
 // global variable counter tracks the matched pairs
 let matched = 0;
-//the game winning number of matches and in our case that would be 16 cards / 2 = 8 pairs.
-const TOTAL_PAIRS = 8;
 // classList get the class of the event target
 // set event listener to deck and its child
 deck.addEventListener('click', event => {
@@ -31,7 +30,7 @@ deck.addEventListener('click', event => {
 		addToggleCard(clickTarget);
 		if (toggledCards.length ===2) {
 			console.log('2 cards!');
-			checkForMatch(clickTarget);
+			checkForMatch();
 			addMove();
 			checkScore();
 		}
@@ -59,6 +58,8 @@ function addToggleCard(clickTarget) {
 }
 //Checking for Match
 function checkForMatch() {
+	//the game winning number of matches and in our case that would be 16 cards / 2 = 8 pairs.
+	const TOTAL_PAIRS = 8;
 	if (toggledCards[0].firstElementChild.className === 
 		toggledCards[1].firstElementChild.className
 	) {
@@ -162,9 +163,9 @@ function startClock() {
 // startClock();
 // every new second of interval function need to display the current time in score HTML
 function displayTime() {
+	const clock = document.querySelector('.clock');
 	const minutes = Math.floor(time / 60);
 	const seconds = time % 60;
-	const clock = document.querySelector('.clock');
 	// console.log(clock);
 	if (seconds < 10) {
 		clock.innerHTML = `${minutes}:0${seconds}`;
@@ -213,15 +214,16 @@ document.querySelector('.modal_cancel').addEventListener('click', () => {
 	toggleModal();
 });
 // add function to modal button replay
-document.querySelector('.modal_replay').addEventListener('click', () => {
+/*document.querySelector('.modal_replay').addEventListener('click', () => {
 	console.log('replay');
 	//TODO: call reset game HERE
-});
+});*/
 // function to resets the game
 function resetGame() {
 	resetClockAndTime();
 	resetMoves();
 	resetStars();
+	resetCards();
 	shuffleDeck();
 }
 // reset stuff
@@ -244,10 +246,18 @@ function resetStars() {
 		star.style.display = 'inline';
 	}
 }
+
+function resetCards() {
+    const cards = document.querySelectorAll('.deck li');
+    for (let card of cards) {
+        card.className = 'card';
+    }
+}
 // tie resetGame function to restart button in panel
 document.querySelector('.restart').addEventListener('click', resetGame);
-// tie resetGame function to replay button in modal
-document.querySelector('.modal_replay').addEventListener('click', resetGame);
+// tie resetGame function to replay button in modal 
+// add function to modal button replay
+document.querySelector('.modal_replay').addEventListener('click', replayGame);
 
 /*// Modal tests
 time = 121;
@@ -261,6 +271,12 @@ toggleModal();// open modal*/
 //The gameOver function will stop the clock, write to modal, and toggle that modal
 function gameOver() {
 	stopClock();
+	toggleModal();
 	writeModalStats();
+}
+// replay button
+function replayGame() {
+	resetGame();
 	toggleModal();
 }
+// toggleModal();
